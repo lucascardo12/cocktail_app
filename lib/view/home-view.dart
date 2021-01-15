@@ -1,5 +1,9 @@
 import 'package:cocktail_app/controller/home-controller.dart';
+import 'package:cocktail_app/model/alcoolico-model.dart';
+import 'package:cocktail_app/model/categoria-model.dart';
 import 'package:cocktail_app/model/drink-model.dart';
+import 'package:cocktail_app/model/ingrediente-model.dart';
+import 'package:cocktail_app/model/vidro-model.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,8 +15,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String filtro = 'a=Alcoholic';
+  List<Alcoolico> listAlcoolico = new List<Alcoolico>();
+  List<Categoria> listCategoria = new List<Categoria>();
+  List<Ingredientes> listIngredientes = new List<Ingredientes>();
+  List<Vidro> listVidro = new List<Vidro>();
   @override
   void initState() {
+    getFilterAlcoolico().then((value) => listAlcoolico = value);
     super.initState();
   }
 
@@ -23,6 +32,8 @@ class _HomePageState extends State<HomePage> {
           elevation: 12,
           child: Container(
               child: ListView(
+            shrinkWrap: true,
+            physics: ClampingScrollPhysics(),
             children: [
               FlatButton(
                 shape: RoundedRectangleBorder(
@@ -80,6 +91,7 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.bold, color: Colors.black),
                     )),
               ),
+              Container(height: 200, child: alcoholicList()),
               Padding(
                 padding: EdgeInsets.all(20),
                 child: OutlineButton(
@@ -114,6 +126,30 @@ class _HomePageState extends State<HomePage> {
         },
       ),
     );
+  }
+
+  alcoholicList() {
+    return ColumnBuilder(
+        itemCount: listAlcoolico.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.only(left: 20, right: 20),
+            child: OutlineButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                color: Colors.black,
+                onPressed: () {},
+                child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      "${listAlcoolico[index].strAlcoholic}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ))),
+          );
+        });
   }
 }
 
@@ -156,6 +192,35 @@ class DrikList extends StatelessWidget {
               ],
             ));
       },
+    );
+  }
+}
+
+class ColumnBuilder extends StatelessWidget {
+  final IndexedWidgetBuilder itemBuilder;
+  final MainAxisAlignment mainAxisAlignment;
+  final MainAxisSize mainAxisSize;
+  final CrossAxisAlignment crossAxisAlignment;
+  final TextDirection textDirection;
+  final VerticalDirection verticalDirection;
+  final int itemCount;
+
+  const ColumnBuilder({
+    Key key,
+    @required this.itemBuilder,
+    @required this.itemCount,
+    this.mainAxisAlignment: MainAxisAlignment.start,
+    this.mainAxisSize: MainAxisSize.max,
+    this.crossAxisAlignment: CrossAxisAlignment.center,
+    this.textDirection,
+    this.verticalDirection: VerticalDirection.down,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Column(
+      children: new List.generate(
+          this.itemCount, (index) => this.itemBuilder(context, index)).toList(),
     );
   }
 }
