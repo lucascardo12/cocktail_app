@@ -4,6 +4,7 @@ import 'package:cocktail_app/model/categoria-model.dart';
 import 'package:cocktail_app/model/drink-model.dart';
 import 'package:cocktail_app/model/ingrediente-model.dart';
 import 'package:cocktail_app/model/vidro-model.dart';
+import 'package:cocktail_app/view/detalhesDrink-page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -324,7 +325,12 @@ class DrikList extends StatelessWidget {
                 )),
                 FlatButton(
                   child: Text('Detalhes'),
-                  onPressed: () {},
+                  onPressed: () => Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                          builder: (BuildContext context) => DetalhesDrinkPage(
+                                drink: drinks[index].strDrink,
+                              ))),
                 )
               ],
             ));
