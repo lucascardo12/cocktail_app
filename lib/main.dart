@@ -1,4 +1,4 @@
-import 'package:cocktail_app/view/home-page.dart';
+import 'package:cocktail_app/view/home-view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,9 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Cocktail App',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: ThemeData.dark(),
         home: HomePage());
   }
 }

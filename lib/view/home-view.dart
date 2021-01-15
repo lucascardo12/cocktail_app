@@ -10,6 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String filtro = 'a=Alcoholic';
   @override
   void initState() {
     super.initState();
@@ -21,66 +22,70 @@ class _HomePageState extends State<HomePage> {
       endDrawer: Drawer(
           elevation: 12,
           child: Container(
-              color: Colors.blue,
               child: ListView(
-                children: [
-                  FlatButton(
-                    color: Colors.white,
-                    onPressed: () {},
-                    child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          "Categories",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )),
-                  ),
-                  FlatButton(
-                    color: Colors.white,
-                    onPressed: () {},
-                    child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          "Glasses",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )),
-                  ),
-                  FlatButton(
-                    color: Colors.white,
-                    onPressed: () {},
-                    child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          "Ingredients",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )),
-                  ),
-                  FlatButton(
-                    color: Colors.white,
-                    onPressed: () {},
-                    child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          "Categorias",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )),
-                  ),
-                  FlatButton(
-                    color: Colors.white,
-                    onPressed: () {},
-                    child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          "Categorias",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )),
-                  )
-                ],
-              ))),
+            children: [
+              FlatButton(
+                color: Colors.white,
+                onPressed: () {},
+                child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      "Categories",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black),
+                    )),
+              ),
+              FlatButton(
+                color: Colors.white,
+                onPressed: () {},
+                child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      "Glasses",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black),
+                    )),
+              ),
+              FlatButton(
+                color: Colors.white,
+                onPressed: () {},
+                child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      "Ingredients",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black),
+                    )),
+              ),
+              FlatButton(
+                color: Colors.white,
+                onPressed: () {},
+                child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      "Alcoholic",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black),
+                    )),
+              ),
+              FlatButton(
+                color: Colors.black,
+                onPressed: () {},
+                child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      "Filtrar",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    )),
+              )
+            ],
+          ))),
       appBar: AppBar(
         title: Text('Home'),
       ),
       body: FutureBuilder<List<Drink>>(
-        future: getDrink(filtro: 'a=Alcoholic'),
+        future: getDrink(filtro: filtro),
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
 
@@ -101,19 +106,36 @@ class DrikList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      padding: EdgeInsets.all(0),
       scrollDirection: Axis.vertical,
       itemCount: drinks.length,
       itemBuilder: (context, index) {
-        return Row(
-          children: [
-            FadeInImage.assetNetwork(
-              width: 150,
-              image: drinks[index].strDrinkThumb,
-              placeholder: 'assets/load.gif',
-            ),
-            Text(drinks[index].strDrink)
-          ],
-        );
+        return OutlineButton(
+            padding: EdgeInsets.all(10),
+            onPressed: () {},
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                FadeInImage.assetNetwork(
+                  width: 150,
+                  image: drinks[index].strDrinkThumb,
+                  placeholder: 'assets/load.gif',
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Flexible(
+                    child: Text(
+                  drinks[index].strDrink,
+                  overflow: TextOverflow.fade,
+                  style: TextStyle(
+                    color: Colors.yellow,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ))
+              ],
+            ));
       },
     );
   }
