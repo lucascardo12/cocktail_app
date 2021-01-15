@@ -25,6 +25,9 @@ class _HomePageState extends State<HomePage> {
               child: ListView(
             children: [
               FlatButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
                 color: Colors.white,
                 onPressed: () {},
                 child: Padding(
@@ -36,6 +39,9 @@ class _HomePageState extends State<HomePage> {
                     )),
               ),
               FlatButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
                 color: Colors.white,
                 onPressed: () {},
                 child: Padding(
@@ -47,6 +53,9 @@ class _HomePageState extends State<HomePage> {
                     )),
               ),
               FlatButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
                 color: Colors.white,
                 onPressed: () {},
                 child: Padding(
@@ -58,6 +67,9 @@ class _HomePageState extends State<HomePage> {
                     )),
               ),
               FlatButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
                 color: Colors.white,
                 onPressed: () {},
                 child: Padding(
@@ -68,16 +80,23 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.bold, color: Colors.black),
                     )),
               ),
-              FlatButton(
-                color: Colors.black,
-                onPressed: () {},
-                child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      "Filtrar",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.white),
-                    )),
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: OutlineButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    color: Colors.black,
+                    onPressed: () {},
+                    child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          " Filtro:  \n\n " +
+                              filtro.substring(2, filtro.length),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ))),
               )
             ],
           ))),
