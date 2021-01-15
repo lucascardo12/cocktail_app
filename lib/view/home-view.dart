@@ -15,6 +15,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String filtro = 'a=Alcoholic';
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey();
+
   List<Alcoolico> listAlcoolico = new List<Alcoolico>();
   List<Categoria> listCategoria = new List<Categoria>();
   List<Ingredientes> listIngredientes = new List<Ingredientes>();
@@ -35,6 +37,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldkey,
       endDrawer: Drawer(
           elevation: 12,
           child: Container(
@@ -139,6 +142,18 @@ class _HomePageState extends State<HomePage> {
             ],
           ))),
       appBar: AppBar(
+        actions: [
+          StatefulBuilder(
+            builder: (BuildContext context, setState) {
+              return IconButton(
+                icon: Icon(Icons.filter_alt),
+                onPressed: () {
+                  _scaffoldkey.currentState.openEndDrawer();
+                },
+              );
+            },
+          )
+        ],
         title: Text('Home'),
       ),
       body: FutureBuilder<List<Drink>>(
@@ -287,7 +302,7 @@ class DrikList extends StatelessWidget {
             padding: EdgeInsets.all(10),
             onPressed: () {},
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 FadeInImage.assetNetwork(
                   width: 150,
@@ -306,7 +321,11 @@ class DrikList extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
-                ))
+                )),
+                FlatButton(
+                  child: Text('Detalhes'),
+                  onPressed: () {},
+                )
               ],
             ));
       },
