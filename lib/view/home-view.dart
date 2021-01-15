@@ -26,6 +26,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     getFilterAlcoolico().then((value) => listAlcoolico = value);
+    getFilterCategoria().then((value) => listCategoria = value);
+    getFilterIngredientes().then((value) => listIngredientes = value);
+    getFilterVidro().then((value) => listVidro = value);
     super.initState();
   }
 
@@ -162,7 +165,12 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(25),
                 ),
                 color: Colors.black,
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    filtro = 'a=' + listAlcoolico[index].strAlcoholic;
+                    Navigator.pop(context);
+                  });
+                },
                 child: Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
@@ -186,7 +194,12 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(25),
                 ),
                 color: Colors.black,
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    filtro = 'c=' + listCategoria[index].strCategory;
+                    Navigator.pop(context);
+                  });
+                },
                 child: Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
@@ -210,7 +223,12 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(25),
                 ),
                 color: Colors.black,
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    filtro = 'g=' + listVidro[index].strGlass;
+                    Navigator.pop(context);
+                  });
+                },
                 child: Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
@@ -234,7 +252,12 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(25),
                 ),
                 color: Colors.black,
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    filtro = 'i=' + listIngredientes[index].strIngredient1;
+                    Navigator.pop(context);
+                  });
+                },
                 child: Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
